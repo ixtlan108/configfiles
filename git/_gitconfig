@@ -1,0 +1,18 @@
+[user]
+	email = hamilton@hamilton.com
+	name = Hamilton 108
+[push]
+	default = simple
+[color]
+	ui = true
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg2 = log --first-parent --abbrev-commit
+    save = !sh -c 'export PREV=$(git symbolic-ref HEAD|cut -d/ -f3-) && git checkout -b "$1" && git commit -am "$1" && git checkout "$PREV"' -
+	conflicts = !git ls-files -u | cut -f 2 | sort -u
+    oldest-ancestor = !bash -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
+    diffw = diff -w -U0 --word-diff-regex='[^[:space:]]'
+    diffw2 = -c core.whitespace=-trailing-space,-indent-with-non-tab,-tab-in-indent diff -w -U0 --word-diff-regex='[^[:space:]]'
+[core]
+	editor = vi
+
