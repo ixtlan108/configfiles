@@ -18,7 +18,7 @@ local conf = wez.config_builder()
 --local un_focus_color = "dayfox"
 --local un_focus_color = "Atelier Estuary Light (base16)"
 
-local is_light = false
+local is_light = false 
 
 local padding = 10
 conf.window_padding = {
@@ -99,6 +99,11 @@ conf.keys = {
 		key = "w",
 		mods = "LEADER",
 		action = wez.action.ShowTabNavigator,
+	},
+       { 		
+                key = "m", 
+		mods = "LEADER", 
+		action = wez.action.PaneSelect 
 	},
 	-- {
 	-- 	key = "f",
