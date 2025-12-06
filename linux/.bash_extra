@@ -1,0 +1,67 @@
+
+# GIT 
+function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ $(parse_git_branch) '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else 
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ $(parse_git_branch) '
+    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# JAVA 
+
+JAVA_HOME=/usr/local/java
+export JAVA_HOME
+
+# JAVAFX_HOME=$JAVA_HOME/jre/lib
+# export JAVAFX_HOME
+
+# ASPECTJ
+# ASPECTJ_HOME=/home/rcs/opt/aspectj1.8
+
+# MAVEN
+M2_HOME=/usr/local/maven
+export M2_HOME
+
+
+# Gradle
+GRADLE_HOME=/usr/local/gradle
+export GRADLE_HOME
+
+# Groovy
+GROOVY_HOME=/usr/local/groovy
+export GROOVY_HOME
+
+# JRuby
+# JRUBY_HOME=/usr/local/jruby
+
+# Julia
+JULIA_HOME=/home/rcs/Downloads/julia/julia-1.7.2 
+
+#export PATH=$JAVA_HOME/bin:$GRADLE_HOME/bin:$PATH:$ASPECTJ_HOME/bin
+export PATH=$JULIA_HOME/bin:$JAVA_HOME/bin:$GRADLE_HOME/bin:$GROOVY_HOME/bin:$M2_HOME/bin:$PATH
+
+# alias elm2='docker run -it --rm -v "$(pwd):/code" -w "/code" -e "HOME=/tmp" -u $UID:$GID -p 8001:8001 codesimple/elm:$ELM_VERSION'
+
+# alias elmf='elm-format --yes'
+
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+## an alias for `docker run` that links the X11 device
+alias docker-run-gui='XSOCK=/tmp/.X11-unix && XAUTH=/tmp/.docker.xauth && xauth nlist :0 | sed -e "s/^..../ffff/" | xauth -f $XAUTH nmerge - && docker run  -v $XSOCK:$XSOCK -v $XAUTH:$XAUTH -e XAUTHORITY=$XAUTH  -e DISPLAY=$DISPLAY'
+
+### Use that alias in defining an alias that runs R from the hadleyverse container
+alias R='docker-run-gui --rm -it -P --user 1000 -v $(pwd):/home/rstudio/`basename $PWD` -w /home/rstudio/`basename $PWD` r-base:3.4.1'
+
+alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+
+(cat ~/.cache/wal/sequences &)
+
+

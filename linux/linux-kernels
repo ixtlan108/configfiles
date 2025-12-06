@@ -1,0 +1,11 @@
+sudo dpkg --list | egrep -i --color 'linux-image|linux-headers'
+
+sudo apt autoremove --purge
+
+sudo apt remove --purge linux-headers-[version]
+
+sudo apt remove --purge linux-image-[version]
+
+sudo apt autoremove --purge
+
+
