@@ -1,28 +1,33 @@
 [user]
-	email = hamilton@hamilton.com
-    name = Hamilton 108
+	email = ixtlan@gmail.com
+	name = Ixtlan
 [push]
 	default = simple
 [color]
 	ui = true
 [alias]
-    lg = log -n 8 --graph --pretty=format:'%C(red)%h - %C(yellow)%cd%-Creset %s %C(bold red)%d %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short
-    lga = log --graph --pretty=format:'%C(red)%h - %C(yellow)%cd%-Creset %s %C(bold red)%d %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short
-    lg2 = log --first-parent --abbrev-commit
-    hs = log -n 8 --graph --full-history --all --color --date=short --pretty=format:'%Cred%x09%h %Creset%ad%Cblue%d %Creset %s %C(bold)(%an)%Creset'
-    hsa = log --graph --full-history --all --color --date=short --pretty=format:'%Cred%x09%h %Creset%ad%Cblue%d %Creset %s %C(bold)(%an)%Creset'
-    save = !sh -c 'export PREV=$(git symbolic-ref HEAD|cut -d/ -f3-) && git checkout -b "$1" && git commit -am "$1" && git checkout "$PREV"' -
+	lg = log -n 5 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%cd%Creset %s %Cgreen(%cr) %C(bold red)%d %C(bold blue)<%an>%Creset' --abbrev-commit --date=local
+	lg2 = log -n 10 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%cd%Creset %s %Cgreen(%cr) %C(bold red)%d %C(bold blue)<%an>%Creset' --abbrev-commit --date=local
+	lg3 = log -n 20 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%cd%Creset %s %Cgreen(%cr) %C(bold red)%d %C(bold blue)<%an>%Creset' --abbrev-commit --date=local
+	lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%cd%Creset %s %Cgreen(%cr) %C(bold red)%d %C(bold blue)<%an>%Creset' --abbrev-commit --date=local
 	conflicts = !git ls-files -u | cut -f 2 | sort -u
-    oldest-ancestor = !bash -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
-    diffw = diff -w -U0 --word-diff-regex='[^[:space:]]'
-    diffw2 = -c core.whitespace=-trailing-space,-indent-with-non-tab,-tab-in-indent diff -w -U0 --word-diff-regex='[^[:space:]]'
-    oldest-ancestor2 = !bash -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-main}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
+	hs = log -n 8 --graph --full-history --all --color --date=local --pretty=format:'%Cred%x09%h %C(yellow)%ad%Cgreen%d %Creset %s %C(bold blue)(%an)%Creset'
+	hsa = log --graph --full-history --all --color --date=local --pretty=format:'%Cred%x09%h %C(yellow)%ad%Cgreen%d %Creset %s %C(bold blue)(%an)%Creset'
+	oldest-ancestor = !bash -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-main}") <(git rev-list --first-parent "${2:-HEAD}") | head
+	diffw = diff -b -w -U0 --word-diff-regex='[^[:space:]]'
+	diffb = diff -b
+	diffw2 = -c core.whitespace=-trailing-space,-indent-with-non-tab,-tab-in-indent diff -w -U0 --word-diff-regex='[^[:space:]]'
+	parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
+	bx = branch --sort=-committerdate
+	bxa = branch -a --sort=-committerdate
+	save = !sh -c 'export PREV=$(git symbolic-ref HEAD|cut -d/ -f3-) && git checkout -b "$1" && git commit -am "$1" && git checkout "$PREV"' -
 [core]
 	editor = vi
-
-[rerere]
-	enabled = true
-[column]
-	ui = auto
-[branch]
-	sort = -committerdate
+	pager = delta
+[delta]
+	navigate = true
+	side-by-side = true
+[pull]
+	rebase = true
+[fetch]
+	prune = true
