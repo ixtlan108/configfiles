@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "icon_theme": "Catppuccin Mocha",
   "vim_mode": true,
   "relative_line_numbers": "enabled",
   "ui_font_size": 16,
@@ -19,7 +20,7 @@
   "theme": {
     "mode": "dark",
     "light": "Dayfox - blurred",
-    "dark": "Terafox - blurred",
+    "dark": "Carbonfox - blurred",
   },
   "tabs": {
     "file_icons": false,
@@ -27,5 +28,6 @@
   },
   "experimental.theme_overrides": {
     "tab.active_background": "#000",
+    "tab.inactive_background": "#444",
   },
 }
