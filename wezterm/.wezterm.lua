@@ -18,7 +18,7 @@ local conf = wez.config_builder()
 --local un_focus_color = "dayfox"
 --local un_focus_color = "Atelier Estuary Light (base16)"
 
-local is_light = false 
+local is_light = true 
 
 local padding = 10
 conf.window_padding = {
@@ -114,7 +114,7 @@ conf.keys = {
 wez.on("update-status", function(window, pane)
 	local overrides = window:get_config_overrides() or {}
 	if is_light == true then
-		overrides.color_scheme = "dayfox"
+		overrides.color_scheme = "Modus-Operandi"
 	else
 		overrides.color_scheme = "nordfox"
 	end
