@@ -1,0 +1,51 @@
+#!/bin/bash
+
+usage()
+{
+cat << EOF
+usage: $0 options
+
+OPTIONS:
+   -h      Show this message
+   -d      Dark mode 
+   -l      Light mode (Default)
+EOF
+}
+
+MODE=1
+
+#c)
+#     CONTAINER_NAME=$OPTARG
+#     ;;
+
+while getopts "hdl" OPTION
+do
+     case $OPTION in
+         h)
+             usage
+             exit 1
+             ;;
+         l)
+             MODE=1
+             ;;
+         d)
+             MODE=2
+             ;;
+         ?)
+             usage
+             exit
+             ;;
+     esac
+done
+
+echo "MODE $MODE"
+
+if [ $MODE -eq 1 ]; then
+        echo "Light mode"
+        cp ~/opt/configfiles/wezterm/.wezterm.lua ~/.wezterm.lua 
+else
+        echo "Dark mode"
+        cp ~/opt/configfiles/wezterm/.wezterm.lua.dark ~/.wezterm.lua 
+fi
+
+exit 0

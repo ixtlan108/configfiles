@@ -18,7 +18,7 @@ local conf = wez.config_builder()
 --local un_focus_color = "dayfox"
 --local un_focus_color = "Atelier Estuary Light (base16)"
 
-local is_light = true 
+local is_light = false
 
 local padding = 10
 conf.window_padding = {
@@ -35,7 +35,7 @@ conf.leader = {
 }
 conf.font = wez.font("Fira Code", { weight = "ExtraLight" })
 conf.font_size = 13.0
-conf.window_background_opacity = 1.0 
+conf.window_background_opacity = 0.8
 conf.use_fancy_tab_bar = true
 conf.tab_max_width = 32
 
