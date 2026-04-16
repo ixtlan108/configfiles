@@ -1,24 +1,8 @@
 local wez = require("wezterm")
 local conf = wez.config_builder()
 -- local sess = require("sessionizer")
--- conf.color_scheme = 'Ashes (light) (terminal.sexy)'
---conf.color_scheme = 'Atelier Cave Light (base16)'
---conf.color_scheme = 'Atelier Estuary Light (base16)'
---conf.color_scheme = 'Atelier Forest Light (base16)'
--- conf.color_scheme = 'Atelier Heath Light (base16)'
--- conf.color_scheme = "Atelier Plateau Light (base16)"
 
---local focus_color = "Atelier Plateau Light (base16)"
---local focus_color = "nordfox"
---local focus_color = "dayfox"
---local focus_color = "Atelier Cave Light (base16)"
-
---local un_focus_color = "Atelier Forest Light (base16)"
---local un_focus_color = "nightfox"
---local un_focus_color = "dayfox"
---local un_focus_color = "Atelier Estuary Light (base16)"
-
-local is_light = false
+local is_light = false 
 
 local padding = 10
 conf.window_padding = {
@@ -35,7 +19,7 @@ conf.leader = {
 }
 conf.font = wez.font("Fira Code", { weight = "ExtraLight" })
 conf.font_size = 13.0
-conf.window_background_opacity = 0.8
+conf.window_background_opacity = 1.0
 conf.use_fancy_tab_bar = true
 conf.tab_max_width = 32
 
@@ -100,11 +84,18 @@ conf.keys = {
 		mods = "LEADER",
 		action = wez.action.ShowTabNavigator,
 	},
-       { 		
-                key = "m", 
-		mods = "LEADER", 
-		action = wez.action.PaneSelect 
+	{
+		key = "0",
+		mods = "ALT",
+		-- action = wez.action.PaneSelect({ alphabet = "0987654321", mode = "SwapWithActive" }),
+		action = wez.action.PaneSelect({ alphabet = "098765432" }),
 	},
+	-- {
+	-- 	key = "1",
+	-- 	mods = "ALT",
+	-- 	action = wez.action.ActivatePaneByIndex(0, { mode = "SwapWithActive" }),
+	-- 	--action = wez.action.PaneSelect({ mode = "SwapWithActive" }),
+	-- },
 	-- {
 	-- 	key = "f",
 	-- 	mods = "LEADER",
