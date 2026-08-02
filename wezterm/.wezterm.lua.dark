@@ -2,7 +2,7 @@ local wez = require("wezterm")
 local conf = wez.config_builder()
 -- local sess = require("sessionizer")
 
-local is_light = false 
+local is_light = false
 
 local padding = 10
 conf.window_padding = {
@@ -79,16 +79,16 @@ conf.keys = {
 			end),
 		}),
 	},
-	{
-		key = "w",
-		mods = "LEADER",
-		action = wez.action.ShowTabNavigator,
-	},
+	-- {
+	-- 	key = "w",
+	-- 	mods = "LEADER",
+	-- 	action = wez.action.ShowTabNavigator,
+	-- },
 	{
 		key = "0",
 		mods = "ALT",
-		-- action = wez.action.PaneSelect({ alphabet = "0987654321", mode = "SwapWithActive" }),
-		action = wez.action.PaneSelect({ alphabet = "098765432" }),
+		action = wez.action.PaneSelect({ alphabet = "0987654321", mode = "SwapWithActive" }),
+		--action = wez.action.PaneSelect({ alphabet = "098765432" }),
 	},
 	-- {
 	-- 	key = "1",
@@ -109,10 +109,6 @@ wez.on("update-status", function(window, pane)
 	else
 		overrides.color_scheme = "nordfox"
 	end
-	-- if window:is_focused() then
-	-- 	end
-	-- else
-	-- end
 	window:set_config_overrides(overrides)
 	return {}
 end)
