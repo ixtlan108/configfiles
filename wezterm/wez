@@ -9,16 +9,22 @@ OPTIONS:
    -h      Show this message
    -d      Dark mode 
    -l      Light mode (Default)
+   -p      Place (Default: Ekebergveien)
 EOF
 }
 
+ROOT="/Users/zeus/Projects/configfiles/wezterm"
+
+CONFIG="/Users/zeus/.config/wezterm"
+
 MODE=1
+PLACE=1
 
 #c)
 #     CONTAINER_NAME=$OPTARG
 #     ;;
 
-while getopts "hdl" OPTION
+while getopts "hdlp:" OPTION
 do
      case $OPTION in
          h)
@@ -31,6 +37,9 @@ do
          d)
              MODE=2
              ;;
+         p)
+             PLACE=$OPTARG
+             ;;
          ?)
              usage
              exit
@@ -38,14 +47,22 @@ do
      esac
 done
 
-echo "MODE $MODE"
+echo "ROOT: $ROOT, MODE: $MODE, PLACE: $PLACE, CONFIG: $CONFIG"
 
 if [ $MODE -eq 1 ]; then
-        echo "Light mode"
-        cp ~/opt/configfiles/wezterm/.wezterm.lua ~/.wezterm.lua 
+        echo "$ROOT, Light mode"
+        if [ $PLACE -eq 1 ]; then
+            cp $ROOT/.wezterm.lua ~/.wezterm.lua 
+        else
+            cp $ROOT/.wezterm.lua $CONFIG/wezterm.lua 
+        fi
 else
-        echo "Dark mode"
-        cp ~/opt/configfiles/wezterm/.wezterm.lua.dark ~/.wezterm.lua 
+        echo "$ROOT, Dark mode"
+        if [ $PLACE -eq 1 ]; then
+            cp $ROOT/.wezterm.lua.dark  ~/.wezterm.lua 
+        else
+            cp $ROOT/.wezterm.lua.dark $CONFIG/wezterm.lua
+        fi
 fi
 
 exit 0
