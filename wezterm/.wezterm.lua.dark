@@ -12,6 +12,10 @@ conf.window_padding = {
 	bottom = padding,
 }
 
+-- These necessary on EndeavorOS Gnome
+-- conf.window_decorations = "RESIZE"
+conf.enable_wayland = false
+
 conf.leader = {
 	key = "a",
 	mods = "CTRL",
